@@ -23,6 +23,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Fixed selected state for date picker in windows high contrast mode ([#1342](https://github.com/Shopify/polaris-react/pull/1342))
 - Added background into media query for Microsoft high contrast to fix skeleton accessibility. ([#1341](https://github.com/Shopify/polaris-react/pull/1341))
 - Fixed the position calculation of the `PositionedOverlay` component after scroll. ([#1382](https://github.com/Shopify/polaris-react/pull/1382))
+  Constrain DropZone height based on inherited wrapper height ([#1138](https://github.com/Shopify/polaris-react/pull/1138))
 
 ### Documentation
 
