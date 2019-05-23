@@ -1,4 +1,4 @@
-import {HSLColor, HSBColor} from './color-types';
+import {HSLColor, HSBColor, HSLAColor} from './color-types';
 
 export function lightenColor(color: HSLColor | string, lighten = 0) {
   if (typeof color === 'string') {
@@ -20,6 +20,19 @@ export function darkenColor(color: HSLColor | string, lighten = 0) {
   const nextLightness = lightness - lighten;
 
   return {...color, lightness: nextLightness};
+}
+
+export function opacifyColor(
+  color: HSLAColor | string,
+  alpha: number,
+): HSLAColor | string {
+  if (typeof color === 'string') {
+    return color;
+  }
+
+  const {alpha: prevAlpha, ...rest} = color;
+
+  return {...rest, alpha: alpha > 1 ? Math.floor(alpha) / 100 : alpha};
 }
 
 export function saturateColor(
