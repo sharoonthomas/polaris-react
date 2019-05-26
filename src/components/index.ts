@@ -166,6 +166,8 @@ export {default as Link, Props as LinkProps} from './Link';
 
 export {default as List, Props as ListProps} from './List';
 
+export {default as ListFilters, Props as ListFiltersProps} from './ListFilters';
+
 export {default as Loading, Props as LoadingProps} from './Loading';
 
 export {default as Modal, Props as ModalProps} from './Modal';
