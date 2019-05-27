@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react';
-import isEqual from 'lodash/isEqual';
+import isobjectsEqual from '../../utilities/isObjectsEqual';
 
 type EffectCallback = () => void | (() => void | undefined);
 type DependencyList = ReadonlyArray<unknown>;
@@ -7,7 +7,7 @@ type Comparator = (a: DependencyList, b: DependencyList) => boolean;
 
 function useDeepCompareRef(
   dependencies: DependencyList,
-  comparator: Comparator = isEqual,
+  comparator: Comparator = isobjectsEqual,
 ) {
   const dependencyList = useRef<DependencyList>(dependencies);
 
