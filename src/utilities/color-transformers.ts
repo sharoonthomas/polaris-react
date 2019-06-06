@@ -147,10 +147,11 @@ function rgbToHsbl(color: RGBAColor, type: 'b' | 'l' = 'b'): HSBLAColor {
   } else if (type === 'b') {
     saturation = delta / largestComponent;
   } else if (type === 'l') {
-    saturation =
+    const baseSaturation =
       lightness > 0.5
         ? delta / (2 - largestComponent - smallestComponent)
         : delta / (largestComponent + smallestComponent);
+    saturation = isNaN(baseSaturation) ? 0 : baseSaturation;
   }
 
   let huePercentage = 0;
