@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {createColorRange, createGreyRange} from './utils';
+import {createColorRange, createSurfaceRange} from './utils';
 
 export interface Props {
   /** The content to display */
@@ -15,7 +15,7 @@ export default function InterimTheme(props: Props) {
 
 function createStyles() {
   return {
-    ...createGreyRange('#212B36', 'surface'),
+    ...createSurfaceRange('#212B36', 'surface'),
     ...createColorRange('#5C6AC4', 'brand', {opacify: true}),
     ...createColorRange('#007ACE', 'interactive', {opacify: true}),
     ...createColorRange('#47C1BF', 'timely'),

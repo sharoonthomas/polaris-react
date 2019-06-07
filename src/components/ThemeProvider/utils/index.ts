@@ -197,7 +197,7 @@ export function createColorRange(
   };
 }
 
-export function createGreyRange(
+export function createSurfaceRange(
   baseColor: string,
   colorRole: string,
 ): CSSProperties {

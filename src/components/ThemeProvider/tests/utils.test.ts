@@ -6,7 +6,7 @@ import {
   setTextColor,
   setTheme,
   createColorRange,
-  createGreyRange,
+  createSurfaceRange,
 } from '../utils';
 import {needsVariantList} from '../config';
 
@@ -90,9 +90,9 @@ describe('createColorRange', () => {
     });
   });
 
-  describe('createGreyRange', () => {
+  describe('createSurfaceRange', () => {
     it('creates a range of greys when given a light grey', () => {
-      expect(createGreyRange('#DFE3E8', 'test')).toStrictEqual({
+      expect(createSurfaceRange('#DFE3E8', 'test')).toStrictEqual({
         '--polaris-test-0': '#DFE3E8',
         '--polaris-test-1': '#c1c9d2',
         '--polaris-test-2': '#a3afbd',
@@ -127,7 +127,7 @@ describe('createColorRange', () => {
     });
 
     it('creates a range of greys when given a dark grey', () => {
-      expect(createGreyRange('#212B36', 'test')).toStrictEqual({
+      expect(createSurfaceRange('#212B36', 'test')).toStrictEqual({
         '--polaris-test-0': '#212B36',
         '--polaris-test-1': '#344455',
         '--polaris-test-2': '#485e75',
@@ -162,7 +162,7 @@ describe('createColorRange', () => {
     });
 
     it('creates a range of greys when given a medium dark grey', () => {
-      expect(createGreyRange('#919EAB', 'test')).toStrictEqual({
+      expect(createSurfaceRange('#919EAB', 'test')).toStrictEqual({
         '--polaris-test-0': '#919EAB',
         '--polaris-test-1': '#758595',
         '--polaris-test-2': '#5d6b79',
