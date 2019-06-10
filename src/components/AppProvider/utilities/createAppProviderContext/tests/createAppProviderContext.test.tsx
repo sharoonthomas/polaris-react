@@ -6,7 +6,7 @@ import createAppProviderContext, {
 import StickyManager from '../../StickyManager';
 import ScrollLockManager from '../../ScrollLockManager';
 
-jest.mock('../../Intl', () => ({
+jest.mock('../../../../../utilities/intl', () => ({
   default: jest.fn(),
   __esModule: true,
 }));
@@ -18,7 +18,9 @@ jest.mock('../../Link', () => ({
 
 describe('createAppProviderContext()', () => {
   const createAppSpy: jest.SpyInstance<any> = jest.spyOn(appBridge, 'default');
-  const Intl: jest.Mock<{}> = require.requireMock('../../Intl').default;
+  const Intl: jest.Mock<{}> = require.requireMock(
+    '../../../../../utilities/intl',
+  ).default;
   const Link: jest.Mock<{}> = require.requireMock('../../Link').default;
 
   afterEach(() => {
@@ -32,7 +34,6 @@ describe('createAppProviderContext()', () => {
     const context = createAppProviderContext();
 
     expect(context).toMatchObject({
-      intl: expect.any(Intl),
       link: expect.any(Link),
       stickyManager: expect.any(StickyManager),
       scrollLockManager: expect.any(ScrollLockManager),
@@ -51,13 +52,6 @@ describe('createAppProviderContext()', () => {
       error: () => {},
     }));
 
-    const i18n = {
-      Polaris: {
-        Common: {
-          undo: 'Custom Undo',
-        },
-      },
-    };
     const CustomLinkComponent = () => {
       return <a href="test">Custom Link Component</a>;
     };
@@ -65,7 +59,6 @@ describe('createAppProviderContext()', () => {
     const scrollLockManager = new ScrollLockManager();
     const apiKey = '4p1k3y';
     const context = createAppProviderContext({
-      i18n,
       linkComponent: CustomLinkComponent,
       stickyManager,
       scrollLockManager,
@@ -73,7 +66,6 @@ describe('createAppProviderContext()', () => {
     });
 
     expect(context).toMatchObject({
-      intl: expect.any(Intl),
       link: expect.any(Link),
       stickyManager: expect.any(StickyManager),
       scrollLockManager: expect.any(ScrollLockManager),
@@ -90,7 +82,6 @@ describe('createAppProviderContext()', () => {
       },
     });
 
-    expect(Intl).toHaveBeenCalledWith(i18n);
     expect(Link).toHaveBeenCalledWith(CustomLinkComponent);
   });
 
@@ -101,7 +92,7 @@ describe('createAppProviderContext()', () => {
     });
 
     const apiKey = '4p1k3y';
-    createAppProviderContext({apiKey, i18n: {}});
+    createAppProviderContext({apiKey});
 
     expect(set).toHaveBeenCalledWith(
       appBridge.LifecycleHook.DispatchAction,

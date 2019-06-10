@@ -8,39 +8,34 @@ import StickyManager from '../StickyManager';
 import createAppProviderContext, {
   CreateAppProviderContext,
 } from '../createAppProviderContext';
+import Intl, {TranslationDictionary} from '../../../../utilities/intl';
 
 export interface CreatePolarisContext extends AppProviderProps {
   stickyManager?: StickyManager;
 }
 
-export function createPolarisContext(): PolarisContext;
-export function createPolarisContext(
-  contextOne: CreateAppProviderContext | CreateThemeContext,
-): PolarisContext;
-export function createPolarisContext(
-  contextOne: CreateAppProviderContext | CreateThemeContext,
-  contextTwo: CreateAppProviderContext | CreateThemeContext,
-): PolarisContext;
+interface Context {
+  appProvider?: CreateAppProviderContext;
+  themeProvider?: CreateThemeContext;
+  i18n?: TranslationDictionary | TranslationDictionary[];
+}
+
 export default function createPolarisContext(
-  contextOne?: CreateAppProviderContext | CreateThemeContext,
-  contextTwo?: CreateAppProviderContext | CreateThemeContext,
+  context: Context = {},
 ): PolarisContext {
-  let appProviderContext: CreateAppProviderContext | undefined;
-  let themeContext: CreateThemeContext | undefined;
-  if (contextOne && 'logo' in contextOne) {
-    themeContext = contextOne as CreateThemeContext;
-    appProviderContext = contextTwo as CreateAppProviderContext;
-  } else {
-    appProviderContext = contextOne;
-    themeContext = contextTwo as CreateThemeContext | undefined;
-  }
+  const {
+    appProvider: appProviderContext,
+    themeProvider: themeProviderContext,
+    i18n: translations = {},
+  } = context;
 
   const appProvider = appProviderContext
     ? createAppProviderContext(appProviderContext)
     : createAppProviderContext();
-  const theme = themeContext
-    ? createThemeContext(themeContext)
+  const theme = themeProviderContext
+    ? createThemeContext(themeProviderContext)
     : createThemeContext();
+  const intl = new Intl(translations);
 
-  return {...appProvider, theme};
+  return {...appProvider, intl, theme};
 }

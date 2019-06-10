@@ -1,6 +1,7 @@
 import {ReactWrapper, CommonWrapper, mount} from 'enzyme';
 import React from 'react';
 import {noop} from '@shopify/javascript-utilities/other';
+import Intl, {IntlContext, TranslationDictionary} from '../utilities/intl';
 import {get} from '../utilities/get';
 import merge from '../utilities/merge';
 import {PolarisContext} from '../components/types';
@@ -83,6 +84,7 @@ function updateRoot(wrapper: AnyWrapper) {
 
 type AppContext = {
   polaris: PolarisContext;
+  intl: Intl;
   themeProvider: ThemeProviderContextType;
   frame: FrameContextType;
 };
@@ -96,6 +98,7 @@ interface MountWithAppProviderOptions {
     polaris?: DeepPartial<PolarisContext>;
     themeProvider?: DeepPartial<ThemeProviderContextType>;
     frame?: DeepPartial<FrameContextType>;
+    intl?: TranslationDictionary | TranslationDictionary[];
   };
 }
 
@@ -108,6 +111,10 @@ export function mountWithAppProvider<P>(
   const polarisDefault = createPolarisContext({i18n: translations});
   const polaris =
     (ctx.polaris && merge(polarisDefault, ctx.polaris)) || polarisDefault;
+
+  const intlTranslations =
+    (ctx.intl && merge(translations, ctx.intl)) || translations;
+  const intl = new Intl(intlTranslations);
 
   const themeproviderDefault = createThemeContext();
   const themeProvider =
@@ -128,6 +135,7 @@ export function mountWithAppProvider<P>(
     polaris,
     themeProvider,
     frame,
+    intl,
   };
 
   const wrapper = polarisContextReactWrapper(node, {
@@ -152,11 +160,13 @@ export function polarisContextReactWrapper<P, S>(
 
     return (
       <AppProviderContext.Provider value={app.polaris}>
-        <ThemeProviderContext.Provider value={app.themeProvider}>
-          <FrameContext.Provider value={app.frame}>
-            {content}
-          </FrameContext.Provider>
-        </ThemeProviderContext.Provider>
+        <IntlContext.Provider value={app.intl}>
+          <ThemeProviderContext.Provider value={app.themeProvider}>
+            <FrameContext.Provider value={app.frame}>
+              {content}
+            </FrameContext.Provider>
+          </ThemeProviderContext.Provider>
+        </IntlContext.Provider>
       </AppProviderContext.Provider>
     );
   }

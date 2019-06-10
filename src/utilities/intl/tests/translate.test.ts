@@ -1,8 +1,8 @@
-import translate from '../translate';
 import {
+  translate,
   PrimitiveReplacementDictionary,
   ComplexReplacementDictionary,
-} from '../types';
+} from '../Intl';
 
 describe('translate()', () => {
   it('returns a simple string value in the translation dictionary', () => {

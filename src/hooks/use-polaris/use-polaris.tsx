@@ -4,6 +4,7 @@ import {AppProviderContext} from '../../components/AppProvider';
 import {ThemeProviderContext} from '../../components/ThemeProvider';
 import {PolarisContext} from '../../components/types';
 /* eslint-enable shopify/strict-component-boundaries */
+import {Omit} from '../../types';
 
 function usePolaris() {
   const polaris = useContext(AppProviderContext);
@@ -18,7 +19,10 @@ function usePolaris() {
 
   const polarisTheme = useContext(ThemeProviderContext);
 
-  const polarisContext: PolarisContext = {
+  // Intl exists on PolarisContent for legacy reasons.
+  // This hook will be removed when we finished moving
+  // all our utilities so I feel we don't need a new type.
+  const polarisContext: Omit<PolarisContext, 'intl'> = {
     ...polaris,
     theme: polarisTheme,
   };

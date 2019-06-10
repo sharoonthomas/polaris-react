@@ -1,10 +1,3 @@
-export {
-  default as Intl,
-  translate,
-  TranslationDictionary,
-  PrimitiveReplacementDictionary,
-  ComplexReplacementDictionary,
-} from './Intl';
 export {default as StickyManager} from './StickyManager';
 export {
   default as createPolarisContext,

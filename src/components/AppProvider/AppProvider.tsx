@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeProvider from '../ThemeProvider';
+import Intl, {IntlContext} from '../../utilities/intl';
 import {
   StickyManager,
   ScrollLockManager,
@@ -10,6 +11,7 @@ import {AppProviderProps} from './types';
 
 interface State {
   context: AppProviderContextType;
+  intl: Intl;
 }
 
 // The script in the styleguide that generates the Props Explorer data expects
@@ -26,7 +28,7 @@ export default class AppProvider extends React.Component<Props, State> {
     super(props);
     this.stickyManager = new StickyManager();
     this.scrollLockManager = new ScrollLockManager();
-    const {theme, children, ...rest} = this.props;
+    const {theme, children, i18n, ...rest} = this.props;
 
     this.state = {
       context: createAppProviderContext({
@@ -34,6 +36,7 @@ export default class AppProvider extends React.Component<Props, State> {
         stickyManager: this.stickyManager,
         scrollLockManager: this.scrollLockManager,
       }),
+      intl: new Intl(i18n),
     };
   }
 
@@ -65,25 +68,30 @@ export default class AppProvider extends React.Component<Props, State> {
     // eslint-disable-next-line react/no-did-update-set-state
     this.setState({
       context: createAppProviderContext({
-        i18n,
         linkComponent,
         apiKey,
         shopOrigin,
         forceRedirect,
         stickyManager: this.stickyManager,
       }),
+      intl: new Intl(i18n),
     });
   }
 
   render() {
     const {theme = {logo: null}, children} = this.props;
-    const {context} = this.state;
+    const {
+      context: {...appProviderContext},
+      intl,
+    } = this.state;
 
     return (
-      <AppProviderContext.Provider value={context}>
-        <ThemeProvider theme={theme}>
-          {React.Children.only(children)}
-        </ThemeProvider>
+      <AppProviderContext.Provider value={appProviderContext}>
+        <IntlContext.Provider value={intl}>
+          <ThemeProvider theme={theme}>
+            {React.Children.only(children)}
+          </ThemeProvider>
+        </IntlContext.Provider>
       </AppProviderContext.Provider>
     );
   }

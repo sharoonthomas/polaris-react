@@ -7,27 +7,24 @@ import {AppProviderContextType} from '../../context';
 import {AppProviderProps} from '../../types';
 import StickyManager from '../StickyManager';
 import ScrollLockManager from '../ScrollLockManager';
-import Intl from '../Intl';
 import Link from '../Link';
 import {polarisVersion} from '../../../../configure';
+import {Omit} from '../../../../types';
 
-export interface CreateAppProviderContext extends AppProviderProps {
+type AppProviderOptions = Omit<AppProviderProps, 'i18n'>;
+export interface CreateAppProviderContext extends AppProviderOptions {
   stickyManager?: StickyManager;
   scrollLockManager?: ScrollLockManager;
 }
 
-export default function createAppProviderContext(
-  {
-    i18n,
-    linkComponent,
-    apiKey,
-    shopOrigin,
-    forceRedirect,
-    stickyManager,
-    scrollLockManager,
-  }: CreateAppProviderContext = {i18n: {}},
-): AppProviderContextType {
-  const intl = new Intl(i18n);
+export default function createAppProviderContext({
+  linkComponent,
+  apiKey,
+  shopOrigin,
+  forceRedirect,
+  stickyManager,
+  scrollLockManager,
+}: CreateAppProviderContext = {}): AppProviderContextType {
   const link = new Link(linkComponent);
   const appBridge = apiKey
     ? createApp({
@@ -49,7 +46,6 @@ export default function createAppProviderContext(
   }
 
   return {
-    intl,
     link,
     stickyManager: stickyManager || new StickyManager(),
     scrollLockManager: scrollLockManager || new ScrollLockManager(),

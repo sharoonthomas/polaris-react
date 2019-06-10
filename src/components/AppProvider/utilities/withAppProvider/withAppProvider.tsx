@@ -1,7 +1,7 @@
 import React from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import {ClientApplication} from '@shopify/app-bridge';
-import Intl from '../Intl';
+import Intl, {IntlContext} from '../../../../utilities/intl';
 import Link from '../Link';
 import StickyManager from '../StickyManager';
 import ScrollLockManager from '../ScrollLockManager';
@@ -74,24 +74,29 @@ export default function withAppProvider<OwnProps>({
               return (
                 <ThemeProviderContext.Consumer>
                   {(polarisTheme) => {
-                    const polarisContext: PolarisContext = {
-                      ...polaris,
-                      theme: polarisTheme,
-                    };
-
-                    if (Object.keys(polaris).length < 1) {
-                      throw new Error(
-                        `The <AppProvider> component is required as of v2.0 of Polaris React. See
-                                    https://polaris.shopify.com/components/structure/app-provider for implementation
-                                    instructions.`,
-                      );
-                    }
-
                     return (
-                      <WrappedComponent
-                        {...this.props as any}
-                        polaris={polarisContext}
-                      />
+                      <IntlContext.Consumer>
+                        {(intl) => {
+                          const polarisContext: PolarisContext = {
+                            ...polaris,
+                            intl,
+                            theme: polarisTheme,
+                          };
+
+                          if (Object.keys(polaris).length < 1) {
+                            throw new Error(
+                              `The <AppProvider> component is required as of v2.0 of Polaris React. See https://polaris.shopify.com/components/structure/app-provider for implementation instructions.`,
+                            );
+                          }
+
+                          return (
+                            <WrappedComponent
+                              {...this.props as any}
+                              polaris={polarisContext}
+                            />
+                          );
+                        }}
+                      </IntlContext.Consumer>
                     );
                   }}
                 </ThemeProviderContext.Consumer>
