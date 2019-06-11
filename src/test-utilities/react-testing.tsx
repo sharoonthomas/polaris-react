@@ -7,12 +7,11 @@ import {
 } from '../components/AppProvider';
 // eslint-disable-next-line shopify/strict-component-boundaries
 import {FrameContext, FrameContextType} from '../components/Frame';
-// eslint-disable-next-line shopify/strict-component-boundaries
 import {
   createThemeContext,
   ThemeProviderContextType,
   ThemeProviderContext,
-} from '../components/ThemeProvider';
+} from '../utilities/theme-provider';
 import {PolarisContext} from '../components/types';
 import {DeepPartial} from '../types';
 import merge from '../utilities/merge';

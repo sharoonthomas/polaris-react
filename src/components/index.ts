@@ -259,9 +259,6 @@ export {default as Thumbnail, Props as ThumbnailProps} from './Thumbnail';
 export {
   default as ThemeProvider,
   Props as ThemeProviderProps,
-  ThemeProviderContextType,
-  ThemeProviderContext,
-  createThemeContext,
 } from './ThemeProvider';
 
 export {default as Toast} from './Toast';

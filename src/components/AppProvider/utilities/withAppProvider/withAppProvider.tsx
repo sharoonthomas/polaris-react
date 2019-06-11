@@ -8,7 +8,7 @@ import ScrollLockManager from '../ScrollLockManager';
 import {
   ThemeProviderContextType,
   ThemeProviderContext,
-} from '../../../ThemeProvider';
+} from '../../../../utilities/theme-provider';
 import {PolarisContext} from '../../../types';
 import AppProviderContext from '../../context';
 

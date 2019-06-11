@@ -1,18 +1,14 @@
 import tokens from '@shopify/polaris-tokens';
-import {needsVariantList} from '../config';
-import {HSLColor} from '../../../utilities/color-types';
-import {
-  colorToHsla,
-  hslToString,
-  hslToRgb,
-} from '../../../utilities/color-transformers';
-import {isLight} from '../../../utilities/color-validation';
-import {constructColorName} from '../../../utilities/color-names';
-import {createLightColor} from '../../../utilities/color-manipulation';
-import {compose} from '../../../utilities/compose';
+import {HSLColor} from '../color-types';
+import {colorToHsla, hslToString, hslToRgb} from '../color-transformers';
+import {isLight} from '../color-validation';
+import {constructColorName} from '../color-names';
+import {createLightColor} from '../color-manipulation';
+import {compose} from '../compose';
 
-import {Theme, ColorsToParse, ThemeVariant, ThemeColors} from '../types';
-import {ThemeProviderContextType} from '../context';
+import {Theme, ColorsToParse, ThemeVariant, ThemeColors} from './types';
+import {ThemeProviderContextType} from './context';
+import {needsVariantList} from './config';
 
 export function setColors(theme: Theme | undefined): string[][] | undefined {
   let colorPairs;

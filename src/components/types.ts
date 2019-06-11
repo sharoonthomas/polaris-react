@@ -1,6 +1,6 @@
 import Intl from '../utilities/intl';
+import {ThemeProviderContextType} from '../utilities/theme-provider';
 import {AppProviderContextType} from './AppProvider';
-import {ThemeProviderContextType} from './ThemeProvider';
 
 export interface PolarisContext extends AppProviderContextType {
   intl: Intl;

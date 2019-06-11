@@ -15,12 +15,11 @@ import {
 } from '../components/AppProvider';
 // eslint-disable-next-line shopify/strict-component-boundaries
 import {FrameContext, FrameContextType} from '../components/Frame';
-// eslint-disable-next-line shopify/strict-component-boundaries
 import {
   createThemeContext,
   ThemeProviderContextType,
   ThemeProviderContext,
-} from '../components/ThemeProvider';
+} from '../utilities/theme-provider';
 
 export type AnyWrapper = ReactWrapper<any, any> | CommonWrapper<any, any>;
 

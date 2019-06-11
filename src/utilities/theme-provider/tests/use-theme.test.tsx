@@ -1,0 +1,30 @@
+import React from 'react';
+import isEqual from 'lodash/isEqual';
+import {mountWithContext} from 'test-utilities';
+
+import useTheme from '../use-theme';
+
+describe('useTheme', () => {
+  it('returns context', () => {
+    const themeProvider = {
+      logo: {
+        topBarSource: 'source',
+      },
+    };
+
+    function Component() {
+      return isEqual(useTheme(), {
+        logo: {
+          topBarSource: 'source',
+        },
+      }) ? (
+        <div />
+      ) : null;
+    }
+
+    const component = mountWithContext(<Component />, {
+      themeProvider,
+    });
+    expect(component).toContainReactComponent('div');
+  });
+});
