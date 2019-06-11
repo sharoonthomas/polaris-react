@@ -196,6 +196,7 @@ export interface Props {
 
 export type CombinedProps = Props & WithAppProviderProps;
 
+/** @uxpincomponent */
 function Icon({
   source,
   color,

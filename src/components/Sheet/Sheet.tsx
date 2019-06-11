@@ -46,7 +46,7 @@ export type ComposedProps = Props & WithAppProviderProps;
 export interface State {
   mobile: boolean;
 }
-
+/** @uxpincomponent */
 export class Sheet extends React.Component<ComposedProps, State> {
   static contextTypes = frameContextTypes;
   context: FrameContext;

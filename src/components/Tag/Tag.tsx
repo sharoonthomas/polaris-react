@@ -17,6 +17,7 @@ export interface Props {
 
 export type CombinedProps = Props & WithAppProviderProps;
 
+/** @uxpincomponent */
 function Tag({
   children,
   disabled = false,

@@ -38,6 +38,7 @@ export interface State {
   focused: boolean;
 }
 
+/** @uxpincomponent */
 export class TopBar extends React.PureComponent<ComposedProps, State> {
   static UserMenu = UserMenu;
   static SearchField = SearchField;

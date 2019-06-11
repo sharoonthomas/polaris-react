@@ -49,6 +49,7 @@ export interface Props {
   onSort?(headingIndex: number, direction: SortDirection): void;
 }
 
+/** @uxpincomponent */
 export class DataTable extends React.PureComponent<
   CombinedProps,
   DataTableState

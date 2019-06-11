@@ -43,9 +43,7 @@ export interface State {
 
 export type CombinedProps = Props & WithAppProviderProps;
 
-/**
- * @uxpincomponent
- */
+/** @uxpincomponent */
 export class Avatar extends React.PureComponent<CombinedProps, State> {
   static getDerivedStateFromProps(props: Props, state: State) {
     if (props.source !== state.prevSource) {

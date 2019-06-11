@@ -56,6 +56,7 @@ export interface State {
   focusDate?: Date;
 }
 
+/** @uxpincomponent */
 export class DatePicker extends React.PureComponent<CombinedProps, State> {
   state: State = {
     hoverDate: undefined,

@@ -6,6 +6,7 @@ import {withAppProvider, WithAppProviderProps} from '../AppProvider';
 export interface Props {}
 export type ComposedProps = Props & WithAppProviderProps;
 
+/** @uxpincomponent */
 export class Loading extends React.PureComponent<ComposedProps, never> {
   static contextTypes = frameContextTypes;
   context: FrameContext;

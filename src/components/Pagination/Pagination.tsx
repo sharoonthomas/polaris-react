@@ -44,6 +44,7 @@ export interface Props extends PaginationDescriptor {
 
 export type CombinedProps = Props & WithAppProviderProps;
 
+/** @uxpincomponent */
 function Pagination({
   hasNext,
   hasPrevious,

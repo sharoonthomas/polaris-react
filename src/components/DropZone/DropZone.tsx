@@ -111,6 +111,7 @@ export type CombinedProps = Props & WithAppProviderProps;
 
 const getUniqueID = createUniqueIDFactory('DropZone');
 
+/** @uxpincomponent */
 export class DropZone extends React.Component<CombinedProps, State> {
   public static FileUpload: typeof FileUpload = FileUpload;
   public static defaultProps: Partial<CombinedProps> = {
