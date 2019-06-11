@@ -63,20 +63,22 @@ describe('createColorRange', () => {
   it('returns an object full of colors by default', () => {
     expect(createColorRange('#5C6AC4', 'test')).toStrictEqual({
       '--polaris-test': '#5C6AC4',
-      '--polaris-test-darkened1': '#37459a',
-      '--polaris-test-darkened2': '#232b61',
-      '--polaris-test-lightened1': '#929cd8',
-      '--polaris-test-lightened2': '#cbcfec',
+      '--polaris-test-darkened1': '#2e397f',
+      '--polaris-test-darkened2': '#10142d',
+      '--polaris-test-lightened1': '#adb4e1',
+      '--polaris-test-lightened2': '#ffffff',
+      '--polaris-test-on': '#292f58',
     });
   });
 
   it('returns an object full of colors with opacity', () => {
     expect(createColorRange('#5C6AC4', 'test', {opacify: true})).toStrictEqual({
       '--polaris-test': '#5C6AC4',
-      '--polaris-test-darkened1': '#37459a',
-      '--polaris-test-darkened2': '#232b61',
-      '--polaris-test-lightened1': '#929cd8',
-      '--polaris-test-lightened2': '#cbcfec',
+      '--polaris-test-darkened1': '#2e397f',
+      '--polaris-test-darkened2': '#10142d',
+      '--polaris-test-lightened1': '#adb4e1',
+      '--polaris-test-lightened2': '#ffffff',
+      '--polaris-test-on': '#292f58',
       '--polaris-test-opacified05': 'hsl(232, 47%, 56.00000000000001%, 0.05)',
       '--polaris-test-opacified1': 'hsl(232, 47%, 56.00000000000001%, 0.1)',
       '--polaris-test-opacified2': 'hsl(232, 47%, 56.00000000000001%, 0.2)',

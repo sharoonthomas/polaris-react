@@ -14,6 +14,7 @@ import {
   opacifyColor,
   lightenColor,
   darkenColor,
+  mixColors,
 } from '../../../utilities/color-manipulation';
 import {compose} from '../../../utilities/compose';
 
@@ -164,10 +165,11 @@ export function createColorRange(
 
   const config = {
     stops: 2,
-    increment: 15,
+    increment: 22,
   };
 
   const hslBaseColor = colorToHsla(baseColor);
+  const rgbBaseColor = hslToRgb(colorToHsla(baseColor) as HSLAColor);
 
   const base = {
     [constructColorName(NAMESPACE, colorRole)]: baseColor,
@@ -189,11 +191,18 @@ export function createColorRange(
 
   const opaqueRange = opacify && createOpaqueRange(baseColor, colorRole);
 
+  const on = {
+    [constructColorName(NAMESPACE, colorRole, 'on')]: rgbToHex(
+      mixColors(rgbBaseColor, {red: 0, green: 0, blue: 0}, 45),
+    ),
+  };
+
   return {
     ...base,
     ...lightRange,
     ...darkRange,
     ...opaqueRange,
+    ...on,
   };
 }
 
@@ -201,7 +210,6 @@ export function createSurfaceRange(
   baseColor: string,
   colorRole: string,
 ): CSSProperties {
-  // TODO: surface should generate an opposing opacified, and a base oppacified
   const hslBaseColor = colorToHsla(baseColor);
   const rgbBaseColor = hslToRgb(hslBaseColor as HSLColor);
 

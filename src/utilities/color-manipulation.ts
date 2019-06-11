@@ -1,4 +1,4 @@
-import {HSLColor, HSBColor, HSLAColor} from './color-types';
+import {HSLColor, HSBColor, HSLAColor, RGBColor} from './color-types';
 
 export function lightenColor(color: HSLColor | string, lighten = 0) {
   if (typeof color === 'string') {
@@ -69,4 +69,22 @@ export function createLightColor(
   const saturatedColor = saturateColor(lightenedColor, -saturation);
 
   return saturatedColor;
+}
+
+export function mixColors(
+  primaryColor: RGBColor,
+  mixColor: RGBColor,
+  weight: number,
+): RGBColor {
+  return {
+    red: Math.round(
+      mixColor.red + (primaryColor.red - mixColor.red) * (weight / 100.0),
+    ),
+    green: Math.round(
+      mixColor.green + (primaryColor.green - mixColor.green) * (weight / 100.0),
+    ),
+    blue: Math.round(
+      mixColor.blue + (primaryColor.blue - mixColor.blue) * (weight / 100.0),
+    ),
+  };
 }
