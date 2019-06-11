@@ -6,7 +6,7 @@ import {WithAppProviderProps} from '../AppProvider';
 import {Props as IconProps} from '../Icon';
 import {Props as AvatarProps} from '../Avatar';
 import {Props as ThumbnailProps} from '../Thumbnail';
-import {useDeepCompare} from '../../hooks';
+import useDeepCompare from '../../utilities/use-deep-compare';
 
 import {Option} from './components';
 import styles from './OptionList.scss';

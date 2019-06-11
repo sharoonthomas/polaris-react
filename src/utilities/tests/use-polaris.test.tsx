@@ -1,9 +1,9 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {mountWithAppProvider} from 'test-utilities/legacy';
-import {AppProviderContext, createPolarisContext} from '../../../components';
+import {AppProviderContext, createPolarisContext} from '../../components';
 import usePolaris from '../use-polaris';
-import translations from '../../../../locales/en.json';
+import translations from '../../../locales/en.json';
 
 describe('usePolaris', () => {
   it('throws when polaris is not defined', () => {

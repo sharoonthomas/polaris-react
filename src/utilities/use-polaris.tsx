@@ -1,10 +1,10 @@
 import {useContext} from 'react';
 /* eslint-disable shopify/strict-component-boundaries */
-import {AppProviderContext} from '../../components/AppProvider';
-import {ThemeProviderContext} from '../../components/ThemeProvider';
-import {PolarisContext} from '../../components/types';
+import {AppProviderContext} from '../components/AppProvider';
+import {ThemeProviderContext} from '../components/ThemeProvider';
+import {PolarisContext} from '../components/types';
 /* eslint-enable shopify/strict-component-boundaries */
-import {Omit} from '../../types';
+import {Omit} from '../types';
 
 function usePolaris() {
   const polaris = useContext(AppProviderContext);

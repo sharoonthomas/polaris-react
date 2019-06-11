@@ -1,6 +1,6 @@
 import React from 'react';
 import {unstyled} from '../shared';
-import {usePolaris} from '../../hooks';
+import usePolaris from '../../utilities/use-polaris';
 
 export interface Props extends React.HTMLProps<HTMLAnchorElement> {
   /** A destination to link to */
