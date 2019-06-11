@@ -9,6 +9,7 @@ import createAppProviderContext, {
   CreateAppProviderContext,
 } from '../createAppProviderContext';
 import Intl, {TranslationDictionary} from '../../../../utilities/intl';
+import ScrollLockManager from '../../../../utilities/scroll-lock-manager';
 
 export interface CreatePolarisContext extends AppProviderProps {
   stickyManager?: StickyManager;
@@ -36,6 +37,7 @@ export default function createPolarisContext(
     ? createThemeContext(themeProviderContext)
     : createThemeContext();
   const intl = new Intl(translations);
+  const scrollLockManager = new ScrollLockManager();
 
-  return {...appProvider, intl, theme};
+  return {...appProvider, intl, scrollLockManager, theme};
 }

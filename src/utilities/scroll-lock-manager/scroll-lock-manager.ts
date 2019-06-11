@@ -1,4 +1,4 @@
-import {isServer} from '../../../../utilities/target';
+import {isServer} from '../target';
 
 export const SCROLL_LOCKING_ATTRIBUTE = 'data-lock-scrolling';
 export const SCROLL_LOCKING_WRAPPER_ATTRIBUTE = 'data-lock-scrolling-wrapper';

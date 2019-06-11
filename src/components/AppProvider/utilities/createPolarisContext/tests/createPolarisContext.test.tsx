@@ -1,6 +1,6 @@
 import React from 'react';
 import StickyManager from '../../StickyManager';
-import ScrollLockManager from '../../ScrollLockManager';
+import ScrollLockManager from '../../../../../utilities/scroll-lock-manager';
 import createPolarisContext from '../createPolarisContext';
 
 jest.mock('../../../../../utilities/intl', () => ({

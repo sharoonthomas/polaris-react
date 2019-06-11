@@ -4,7 +4,9 @@ import {ClientApplication} from '@shopify/app-bridge';
 import Intl, {IntlContext} from '../../../../utilities/intl';
 import Link from '../Link';
 import StickyManager from '../StickyManager';
-import ScrollLockManager from '../ScrollLockManager';
+import ScrollLockManager, {
+  ScrollLockManagerContext,
+} from '../../../../utilities/scroll-lock-manager';
 import {
   ThemeProviderContextType,
   ThemeProviderContext,
@@ -21,7 +23,7 @@ export interface WithAppProviderProps {
     intl: Intl;
     link: Link;
     stickyManager: StickyManager;
-    scrollLockManager: ScrollLockManager;
+    scrollLockManager: ScrollLockManager | null;
     theme?: ThemeProviderContextType;
     appBridge?: ClientApplication<{}>;
   };
@@ -77,23 +79,30 @@ export default function withAppProvider<OwnProps>({
                     return (
                       <IntlContext.Consumer>
                         {(intl) => {
-                          const polarisContext: PolarisContext = {
-                            ...polaris,
-                            intl,
-                            theme: polarisTheme,
-                          };
-
-                          if (Object.keys(polaris).length < 1) {
-                            throw new Error(
-                              `The <AppProvider> component is required as of v2.0 of Polaris React. See https://polaris.shopify.com/components/structure/app-provider for implementation instructions.`,
-                            );
-                          }
-
                           return (
-                            <WrappedComponent
-                              {...this.props as any}
-                              polaris={polarisContext}
-                            />
+                            <ScrollLockManagerContext.Consumer>
+                              {(scrollLockManager) => {
+                                const polarisContext: PolarisContext = {
+                                  ...polaris,
+                                  intl,
+                                  scrollLockManager,
+                                  theme: polarisTheme,
+                                };
+
+                                if (Object.keys(polaris).length < 1) {
+                                  throw new Error(
+                                    `The <AppProvider> component is required as of v2.0 of Polaris React. See https://polaris.shopify.com/components/structure/app-provider for implementation instructions.`,
+                                  );
+                                }
+
+                                return (
+                                  <WrappedComponent
+                                    {...this.props as any}
+                                    polaris={polarisContext}
+                                  />
+                                );
+                              }}
+                            </ScrollLockManagerContext.Consumer>
                           );
                         }}
                       </IntlContext.Consumer>

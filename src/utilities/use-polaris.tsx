@@ -19,10 +19,10 @@ function usePolaris() {
 
   const polarisTheme = useContext(ThemeProviderContext);
 
-  // Intl exists on PolarisContent for legacy reasons.
+  // Intl/ScrollLockManager exist on PolarisContent for legacy reasons.
   // This hook will be removed when we finished moving
   // all our utilities so I feel we don't need a new type.
-  const polarisContext: Omit<PolarisContext, 'intl'> = {
+  const polarisContext: Omit<PolarisContext, 'intl' | 'scrollLockManager'> = {
     ...polaris,
     theme: polarisTheme,
   };

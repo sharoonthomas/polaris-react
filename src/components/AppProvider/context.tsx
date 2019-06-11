@@ -1,12 +1,11 @@
 import React from 'react';
 import {ClientApplication} from '@shopify/app-bridge';
 import createPolarisContext from './utilities/createPolarisContext';
-import {Link, StickyManager, ScrollLockManager} from './utilities';
+import {Link, StickyManager} from './utilities';
 
 export interface AppProviderContextType {
   link: Link;
   stickyManager: StickyManager;
-  scrollLockManager: ScrollLockManager;
   appBridge?: ClientApplication<{}>;
 }
 

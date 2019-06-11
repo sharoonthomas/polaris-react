@@ -1,11 +1,10 @@
 import React from 'react';
 import ThemeProvider from '../ThemeProvider';
 import Intl, {IntlContext} from '../../utilities/intl';
-import {
-  StickyManager,
-  ScrollLockManager,
-  createAppProviderContext,
-} from './utilities';
+import ScrollLockManager, {
+  ScrollLockManagerContext,
+} from '../../utilities/scroll-lock-manager';
+import {StickyManager, createAppProviderContext} from './utilities';
 import AppProviderContext, {AppProviderContextType} from './context';
 import {AppProviderProps} from './types';
 
@@ -34,7 +33,6 @@ export default class AppProvider extends React.Component<Props, State> {
       context: createAppProviderContext({
         ...rest,
         stickyManager: this.stickyManager,
-        scrollLockManager: this.scrollLockManager,
       }),
       intl: new Intl(i18n),
     };
@@ -88,9 +86,11 @@ export default class AppProvider extends React.Component<Props, State> {
     return (
       <AppProviderContext.Provider value={appProviderContext}>
         <IntlContext.Provider value={intl}>
-          <ThemeProvider theme={theme}>
-            {React.Children.only(children)}
-          </ThemeProvider>
+          <ScrollLockManagerContext.Provider value={this.scrollLockManager}>
+            <ThemeProvider theme={theme}>
+              {React.Children.only(children)}
+            </ThemeProvider>
+          </ScrollLockManagerContext.Provider>
         </IntlContext.Provider>
       </AppProviderContext.Provider>
     );

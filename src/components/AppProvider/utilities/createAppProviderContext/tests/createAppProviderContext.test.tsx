@@ -4,7 +4,6 @@ import createAppProviderContext, {
   setClientInterfaceHook,
 } from '../createAppProviderContext';
 import StickyManager from '../../StickyManager';
-import ScrollLockManager from '../../ScrollLockManager';
 
 jest.mock('../../../../../utilities/intl', () => ({
   default: jest.fn(),
@@ -36,7 +35,6 @@ describe('createAppProviderContext()', () => {
     expect(context).toMatchObject({
       link: expect.any(Link),
       stickyManager: expect.any(StickyManager),
-      scrollLockManager: expect.any(ScrollLockManager),
       appBridge: undefined,
     });
   });
@@ -56,19 +54,16 @@ describe('createAppProviderContext()', () => {
       return <a href="test">Custom Link Component</a>;
     };
     const stickyManager = new StickyManager();
-    const scrollLockManager = new ScrollLockManager();
     const apiKey = '4p1k3y';
     const context = createAppProviderContext({
       linkComponent: CustomLinkComponent,
       stickyManager,
-      scrollLockManager,
       apiKey,
     });
 
     expect(context).toMatchObject({
       link: expect.any(Link),
       stickyManager: expect.any(StickyManager),
-      scrollLockManager: expect.any(ScrollLockManager),
       appBridge: {
         apiKey,
         forceRedirect: undefined,

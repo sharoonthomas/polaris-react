@@ -20,6 +20,9 @@ import {
   ThemeProviderContextType,
   ThemeProviderContext,
 } from '../utilities/theme-provider';
+import ScrollLockManager, {
+  ScrollLockManagerContext,
+} from '../utilities/scroll-lock-manager';
 
 export type AnyWrapper = ReactWrapper<any, any> | CommonWrapper<any, any>;
 
@@ -84,6 +87,7 @@ function updateRoot(wrapper: AnyWrapper) {
 type AppContext = {
   polaris: PolarisContext;
   intl: Intl;
+  scrollLockManager: ScrollLockManager;
   themeProvider: ThemeProviderContextType;
   frame: FrameContextType;
 };
@@ -98,6 +102,7 @@ interface MountWithAppProviderOptions {
     themeProvider?: DeepPartial<ThemeProviderContextType>;
     frame?: DeepPartial<FrameContextType>;
     intl?: TranslationDictionary | TranslationDictionary[];
+    scrollLockManager?: ScrollLockManager;
   };
 }
 
@@ -114,6 +119,8 @@ export function mountWithAppProvider<P>(
   const intlTranslations =
     (ctx.intl && merge(translations, ctx.intl)) || translations;
   const intl = new Intl(intlTranslations);
+
+  const scrollLockManager = ctx.scrollLockManager || new ScrollLockManager();
 
   const themeproviderDefault = createThemeContext();
   const themeProvider =
@@ -135,6 +142,7 @@ export function mountWithAppProvider<P>(
     themeProvider,
     frame,
     intl,
+    scrollLockManager,
   };
 
   const wrapper = polarisContextReactWrapper(node, {
@@ -160,11 +168,13 @@ export function polarisContextReactWrapper<P, S>(
     return (
       <AppProviderContext.Provider value={app.polaris}>
         <IntlContext.Provider value={app.intl}>
-          <ThemeProviderContext.Provider value={app.themeProvider}>
-            <FrameContext.Provider value={app.frame}>
-              {content}
-            </FrameContext.Provider>
-          </ThemeProviderContext.Provider>
+          <ScrollLockManagerContext.Provider value={app.scrollLockManager}>
+            <ThemeProviderContext.Provider value={app.themeProvider}>
+              <FrameContext.Provider value={app.frame}>
+                {content}
+              </FrameContext.Provider>
+            </ThemeProviderContext.Provider>
+          </ScrollLockManagerContext.Provider>
         </IntlContext.Provider>
       </AppProviderContext.Provider>
     );
