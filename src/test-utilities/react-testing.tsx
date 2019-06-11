@@ -12,18 +12,31 @@ import {
   ThemeProviderContextType,
   ThemeProviderContext,
 } from '../utilities/theme-provider';
+import ScrollLockManager, {
+  ScrollLockManagerContext,
+} from '../utilities/scroll-lock-manager';
+import Intl, {IntlContext, TranslationDictionary} from '../utilities/intl';
+import translations from '../../locales/en.json';
 import {PolarisContext} from '../components/types';
-import {DeepPartial} from '../types';
+import {DeepPartial, Omit} from '../types';
 import merge from '../utilities/merge';
 
-interface Providers {
+interface ComplexProviders {
   polaris: PolarisContext;
   themeProvider: ThemeProviderContextType;
   frame: FrameContextType;
 }
-type Options = DeepPartial<Providers>;
-type Context = Providers;
-interface Props extends Providers {
+interface SimpleProviders {
+  intl: TranslationDictionary | TranslationDictionary[];
+  scrollLockManager: ScrollLockManager;
+}
+type ReturnedContext = ComplexProviders &
+  Omit<SimpleProviders, 'intl'> & {
+    intl: Intl;
+  };
+type Options = DeepPartial<ComplexProviders> & Partial<SimpleProviders>;
+type Context = ReturnedContext;
+interface Props extends ReturnedContext {
   children: React.ReactElement<any>;
 }
 
@@ -34,6 +47,8 @@ function TestProvider({
   polaris,
   themeProvider,
   frame,
+  intl,
+  scrollLockManager,
   ...props
 }: Props) {
   const childWithProps =
@@ -43,21 +58,32 @@ function TestProvider({
 
   return (
     <AppProviderContext.Provider value={polaris}>
-      <ThemeProviderContext.Provider value={themeProvider}>
-        <FrameContext.Provider value={frame}>
-          {childWithProps}
-        </FrameContext.Provider>
-      </ThemeProviderContext.Provider>
+      <IntlContext.Provider value={intl}>
+        <ScrollLockManagerContext.Provider value={scrollLockManager}>
+          <ThemeProviderContext.Provider value={themeProvider}>
+            <FrameContext.Provider value={frame}>
+              {childWithProps}
+            </FrameContext.Provider>
+          </ThemeProviderContext.Provider>
+        </ScrollLockManagerContext.Provider>
+      </IntlContext.Provider>
     </AppProviderContext.Provider>
   );
 }
 
 export const mountWithContext = createMount<Options, Context>({
-  context({polaris, themeProvider, frame}) {
+  context({polaris, themeProvider, frame, intl, scrollLockManager}) {
     const polarisContextDefault = createPolarisContext();
     const polarisContext =
       (polaris && merge(polarisContextDefault, polaris)) ||
       polarisContextDefault;
+
+    const intlTranslations =
+      (intl && merge(translations, intl)) || translations;
+    const intlContext = new Intl(intlTranslations);
+
+    const scrollLockManagerContext =
+      scrollLockManager || new ScrollLockManager();
 
     const themeproviderContextDefault = createThemeContext();
     const themeProviderContext =
@@ -79,12 +105,16 @@ export const mountWithContext = createMount<Options, Context>({
       polaris: polarisContext,
       themeProvider: themeProviderContext,
       frame: frameContext,
+      intl: intlContext,
+      scrollLockManager: scrollLockManagerContext,
     };
   },
-  render(element, {polaris, themeProvider, frame}) {
+  render(element, {polaris, themeProvider, frame, intl, scrollLockManager}) {
     return (
       <TestProvider
         polaris={polaris}
+        intl={intl}
+        scrollLockManager={scrollLockManager}
         themeProvider={themeProvider}
         frame={frame}
       >
