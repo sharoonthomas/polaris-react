@@ -1,4 +1,3 @@
-export {LinkLikeComponent} from '../UnstyledLink';
 export {
   withAppProvider,
   createAppProviderContext,

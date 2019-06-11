@@ -8,7 +8,7 @@ jest.mock('../../../../../utilities/intl', () => ({
   __esModule: true,
 }));
 
-jest.mock('../../Link', () => ({
+jest.mock('../../../../../utilities/unstyled-link', () => ({
   default: jest.fn(),
   __esModule: true,
 }));
@@ -17,7 +17,9 @@ describe('createPolarisContext()', () => {
   const Intl: jest.Mock<{}> = require.requireMock(
     '../../../../../utilities/intl',
   ).default;
-  const Link: jest.Mock<{}> = require.requireMock('../../Link').default;
+  const Link: jest.Mock<{}> = require.requireMock(
+    '../../../../../utilities/unstyled-link',
+  ).default;
 
   afterEach(() => {
     Intl.mockReset();

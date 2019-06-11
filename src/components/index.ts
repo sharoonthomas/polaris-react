@@ -269,11 +269,7 @@ export {default as TopBar, Props as TopBarProps} from './TopBar';
 
 export {default as Truncate, Props as TruncateProps} from './Truncate';
 
-export {
-  default as UnstyledLink,
-  Props as UnstyledLinkProps,
-  LinkLikeComponent,
-} from './UnstyledLink';
+export {default as UnstyledLink} from './UnstyledLink';
 
 export {
   default as VisuallyHidden,

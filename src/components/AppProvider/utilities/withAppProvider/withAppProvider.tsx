@@ -2,7 +2,7 @@ import React from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import {ClientApplication} from '@shopify/app-bridge';
 import Intl, {IntlContext} from '../../../../utilities/intl';
-import Link from '../Link';
+import Link from '../../../../utilities/unstyled-link';
 import StickyManager from '../StickyManager';
 import ScrollLockManager, {
   ScrollLockManagerContext,
