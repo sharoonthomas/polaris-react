@@ -15,7 +15,7 @@ export default function InterimTheme(props: Props) {
 
 function createStyles() {
   return {
-    ...createSurfaceRange('#212B36', 'surface'),
+    ...createSurfaceRange('#FFFFFF', 'surface'),
     ...createColorRange('#5C6AC4', 'brand', {opacify: true}),
     ...createColorRange('#007ACE', 'interactive', {opacify: true}),
     ...createColorRange('#47C1BF', 'timely'),

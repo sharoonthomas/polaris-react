@@ -9,6 +9,8 @@ import Icon, {Props as IconProps} from '../Icon';
 import Spinner from '../Spinner';
 import styles from './Button.scss';
 
+import theme from './theme';
+
 export type Size = 'slim' | 'medium' | 'large';
 
 export type TextAlign = 'left' | 'right' | 'center';
@@ -186,7 +188,12 @@ function Button({
       // Render an `<a>` so toggling disabled/enabled state changes only the
       // `href` attribute instead of replacing the whole element.
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a id={id} className={className} aria-label={accessibilityLabel}>
+      <a
+        id={id}
+        className={className}
+        aria-label={accessibilityLabel}
+        style={theme.base}
+      >
         {content}
       </a>
     ) : (
@@ -201,6 +208,7 @@ function Button({
         onMouseUp={handleMouseUpByBlurring}
         className={className}
         aria-label={accessibilityLabel}
+        style={theme.base}
       >
         {content}
       </UnstyledLink>
@@ -226,6 +234,7 @@ function Button({
       aria-pressed={ariaPressed}
       role={loading ? 'alert' : undefined}
       aria-busy={loading ? true : undefined}
+      style={theme.base}
     >
       {content}
     </button>

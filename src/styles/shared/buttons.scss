@@ -8,6 +8,7 @@
   $min-height: control-height();
   $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
+  // TODO make `recolor-icon` without arg default to `--icon` var
   @include recolor-icon(color('ink', 'lighter'));
   position: relative;
   display: inline-flex;
@@ -19,14 +20,18 @@
   padding: $vertical-padding spacing();
   background: linear-gradient(
     to bottom,
-    color('white'),
-    color('sky', 'lighter')
+    var(--default-backgroundPrimary),
+    var(--default--backgroundSecondary)
   );
+  // TODO generate border colors
+  // update mixin to use vars
   border: border(dark);
+  // TODO generate shade colors
+  // update mixin to use vars
   box-shadow: shadow(faint);
   border-radius: border-radius();
   line-height: 1;
-  color: color('ink');
+  color: var(--default-text);
   text-align: center;
   cursor: pointer;
   user-select: none;
@@ -38,16 +43,16 @@
   &:hover {
     background: linear-gradient(
       to bottom,
-      color('sky', 'lighter'),
-      color('sky', 'light')
+      var(--hover-backgroundPrimary),
+      var(--hover-backgroundSecondary)
     );
-    border-color: color('sky', 'dark');
+    border-color: var(--hover-border);
   }
 
   &:focus {
-    border-color: color('indigo');
+    border-color: var(--focus-border);
     outline: 0;
-    box-shadow: 0 0 0 1px color('indigo');
+    box-shadow: 0 0 0 1px var(--focus-shadow);
 
     @include high-contrast-button-outline;
   }
@@ -56,13 +61,13 @@
     // Same color gradient is necessary for background transitions
     background: linear-gradient(
       to bottom,
-      color('sky', 'light'),
-      color('sky', 'light')
+      var(--active-backgroundPrimary),
+      var(--active-backgroundSecondary)
     );
-    border-color: color('sky', 'dark');
+    border-color: var(--active-border);
     box-shadow: 0 0 0 0 transparent,
-      inset 0 1px 1px 0 rgba(color('ink', 'lighter'), 0.1),
-      inset 0 1px 4px 0 rgba(color('ink', 'lighter'), 0.2);
+      inset 0 1px 1px 0 var(--active-shadowPrimary),
+      inset 0 1px 4px 0 var(--active-shadowSecondary);
   }
 }
 
@@ -71,10 +76,10 @@
   transition: none;
   background: linear-gradient(
     to bottom,
-    color('sky', 'light'),
-    color('sky', 'light')
+    var(--disabled-backgroundPrimary),
+    var(--disabled-backgroundSecondary)
   );
-  color: color('ink', 'lightest');
+  color: var(--disabled-text);
 }
 
 @mixin button-filled($button-color, $focus-color, $outline-color: null) {

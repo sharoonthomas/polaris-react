@@ -214,8 +214,8 @@ export function createSurfaceRange(
   const rgbBaseColor = hslToRgb(hslBaseColor as HSLColor);
 
   const config = {
-    stops: 9,
-    increment: 10,
+    stops: 29,
+    increment: 3,
   };
 
   let greyRange: CSSProperties;
