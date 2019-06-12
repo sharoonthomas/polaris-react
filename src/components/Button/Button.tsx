@@ -192,7 +192,7 @@ function Button({
         id={id}
         className={className}
         aria-label={accessibilityLabel}
-        style={theme.base}
+        style={theme.primary}
       >
         {content}
       </a>
@@ -208,7 +208,7 @@ function Button({
         onMouseUp={handleMouseUpByBlurring}
         className={className}
         aria-label={accessibilityLabel}
-        style={theme.base}
+        style={theme.primary}
       >
         {content}
       </UnstyledLink>
@@ -234,7 +234,7 @@ function Button({
       aria-pressed={ariaPressed}
       role={loading ? 'alert' : undefined}
       aria-busy={loading ? true : undefined}
-      style={theme.base}
+      style={theme.primary}
     >
       {content}
     </button>

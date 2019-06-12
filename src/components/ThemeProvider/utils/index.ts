@@ -159,14 +159,11 @@ export function createColorRange(
   colorRole: string,
   options?: {
     opacify?: boolean;
+    stops?: number;
+    increment?: number;
   },
 ) {
-  const {opacify = false} = options || {};
-
-  const config = {
-    stops: 2,
-    increment: 22,
-  };
+  const {opacify = false, stops = 2, increment = 22} = options || {};
 
   const hslBaseColor = colorToHsla(baseColor);
   const rgbBaseColor = hslToRgb(colorToHsla(baseColor) as HSLAColor);
@@ -176,17 +173,17 @@ export function createColorRange(
   };
 
   const lightRange = createLightRange(
-    config.stops,
+    stops,
     colorRole,
     hslBaseColor as HSLColor,
-    config.increment,
+    increment,
   );
 
   const darkRange = createDarkRange(
-    config.stops,
+    stops,
     colorRole,
     hslBaseColor as HSLColor,
-    config.increment,
+    increment,
   );
 
   const opaqueRange = opacify && createOpaqueRange(baseColor, colorRole);
