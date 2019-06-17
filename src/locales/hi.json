@@ -102,14 +102,18 @@
     "Icon": {
       "backdropWarning": "{color} आइकन बैकड्रॉप स्वीकार नहीं करता है. आइकन के वे रंग जिनमें बैकड्रॉप होते हैं: {colorsWithBackDrops}"
     },
+    "ActionMenu": {
+      "RollupActions": {
+        "rollupButton": "कार्रवाई"
+      }
+    },
     "Modal": {
       "iFrameTitle": "बॉडी मार्कअप",
       "modalWarning": "मॉडल में ये आवश्यक विशेषताएं नहीं हैं: {missingProps}"
     },
     "Page": {
       "Header": {
-        "iconWarningMessage": "आइकन प्रोप पेज से हटा दिया गया है. इसके बजाय Shopify Partners के डैशबोर्ड 'ऐप सेटअप करें' सेक्शन में ऐप्लिकेशन आइकन अपलोड करें.",
-        "rollupButton": "कार्रवाई"
+        "iconWarningMessage": "आइकन प्रोप पेज से हटा दिया गया है. इसके बजाय Shopify Partners के डैशबोर्ड 'ऐप सेटअप करें' सेक्शन में ऐप्लिकेशन आइकन अपलोड करें."
       }
     },
     "Pagination": {
@@ -136,7 +140,7 @@
       "a11yCheckboxDeselectAllSingle": "{resourceNameSingular} का चयन रद्द करें",
       "a11yCheckboxSelectAllSingle": "{resourceNameSingular} चुनें",
       "a11yCheckboxDeselectAllMultiple": "सभी {itemsLength} {resourceNamePlural} का चयन रद्द करें",
-      "a11yCheckboxSelectAllMultiple": "सभी {itemsLength} {resourceNamePlural} का चयन करें",
+      "a11yCheckboxSelectAllMultiple": "सभी {itemsLength} {resourceNamePlural} को चुनें",
       "ariaLiveSingular": "{itemsLength} आइटम",
       "ariaLivePlural": "{itemsLength} आइटम",
       "Item": {
