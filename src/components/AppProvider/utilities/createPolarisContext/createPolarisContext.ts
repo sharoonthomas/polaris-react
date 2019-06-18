@@ -8,8 +8,8 @@ import StickyManager from '../StickyManager';
 import createAppProviderContext, {
   CreateAppProviderContext,
 } from '../createAppProviderContext';
-import Intl, {TranslationDictionary} from '../../../../utilities/intl';
-import ScrollLockManager from '../../../../utilities/scroll-lock-manager';
+import {Intl, TranslationDictionary} from '../../../../utilities/intl';
+import {ScrollLockManager} from '../../../../utilities/scroll-lock-manager';
 
 export interface CreatePolarisContext extends AppProviderProps {
   stickyManager?: StickyManager;

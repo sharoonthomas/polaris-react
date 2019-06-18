@@ -1,8 +1,10 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-import {Theme} from '../../utilities/theme-provider/types';
-import ThemeProviderContext from '../../utilities/theme-provider/context';
-import {setColors} from '../../utilities/theme-provider';
+import {
+  Theme,
+  ThemeProviderContext,
+  setColors,
+} from '../../utilities/theme-provider';
 
 export interface State {
   theme: Theme;

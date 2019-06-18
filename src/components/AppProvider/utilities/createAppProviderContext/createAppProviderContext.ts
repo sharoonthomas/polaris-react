@@ -6,7 +6,7 @@ import createApp, {
 import {AppProviderContextType} from '../../context';
 import {AppProviderProps} from '../../types';
 import StickyManager from '../StickyManager';
-import Link from '../../../../utilities/unstyled-link';
+import {Link} from '../../../../utilities/unstyled-link';
 import {polarisVersion} from '../../../../configure';
 import {Omit} from '../../../../types';
 

@@ -1,4 +1,4 @@
-import {translate} from '../Intl';
+import {translate} from '../intl';
 import {
   PrimitiveReplacementDictionary,
   ComplexReplacementDictionary,

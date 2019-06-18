@@ -1,7 +1,7 @@
 import {ReactWrapper, CommonWrapper, mount} from 'enzyme';
 import React from 'react';
 import {noop} from '@shopify/javascript-utilities/other';
-import Intl, {IntlContext, TranslationDictionary} from '../utilities/intl';
+import {Intl, IntlContext, TranslationDictionary} from '../utilities/intl';
 import {get} from '../utilities/get';
 import merge from '../utilities/merge';
 import {PolarisContext} from '../components/types';
@@ -20,7 +20,8 @@ import {
   ThemeProviderContextType,
   ThemeProviderContext,
 } from '../utilities/theme-provider';
-import ScrollLockManager, {
+import {
+  ScrollLockManager,
   ScrollLockManagerContext,
 } from '../utilities/scroll-lock-manager';
 

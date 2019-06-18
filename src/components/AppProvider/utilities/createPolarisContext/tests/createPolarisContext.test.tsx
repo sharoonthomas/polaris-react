@@ -1,25 +1,25 @@
 import React from 'react';
 import StickyManager from '../../StickyManager';
-import ScrollLockManager from '../../../../../utilities/scroll-lock-manager';
+import {ScrollLockManager} from '../../../../../utilities/scroll-lock-manager';
 import createPolarisContext from '../createPolarisContext';
 
 jest.mock('../../../../../utilities/intl', () => ({
-  default: jest.fn(),
+  Intl: jest.fn(),
   __esModule: true,
 }));
 
 jest.mock('../../../../../utilities/unstyled-link', () => ({
-  default: jest.fn(),
+  Link: jest.fn(),
   __esModule: true,
 }));
 
 describe('createPolarisContext()', () => {
   const Intl: jest.Mock<{}> = require.requireMock(
     '../../../../../utilities/intl',
-  ).default;
+  ).Intl;
   const Link: jest.Mock<{}> = require.requireMock(
     '../../../../../utilities/unstyled-link',
-  ).default;
+  ).Link;
 
   afterEach(() => {
     Intl.mockReset();

@@ -6,7 +6,7 @@ export const SCROLL_LOCKING_CUSTOM_PROPERTY = '--scroll-lock-body-padding';
 
 let scrollPosition = 0;
 
-export default class ScrollLockManager {
+export class ScrollLockManager {
   private scrollLocks = 0;
   private locked = false;
 

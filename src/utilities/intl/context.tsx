@@ -1,6 +1,4 @@
 import {createContext} from 'react';
-import Intl from './Intl';
+import {Intl} from './intl';
 
-const IntlContext = createContext<Intl>(new Intl({}));
-
-export default IntlContext;
+export const IntlContext = createContext(new Intl({}));

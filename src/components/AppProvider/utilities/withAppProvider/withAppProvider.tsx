@@ -1,10 +1,10 @@
 import React from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import {ClientApplication} from '@shopify/app-bridge';
-import Intl, {IntlContext} from '../../../../utilities/intl';
-import Link from '../../../../utilities/unstyled-link';
-import StickyManager from '../StickyManager';
-import ScrollLockManager, {
+import {Intl, IntlContext} from '../../../../utilities/intl';
+import {Link} from '../../../../utilities/unstyled-link';
+import {
+  ScrollLockManager,
   ScrollLockManagerContext,
 } from '../../../../utilities/scroll-lock-manager';
 import {
@@ -13,6 +13,7 @@ import {
 } from '../../../../utilities/theme-provider';
 import {PolarisContext} from '../../../types';
 import AppProviderContext from '../../context';
+import StickyManager from '../StickyManager';
 
 export type ReactComponent<P, C> =
   | React.ComponentClass<P> & C

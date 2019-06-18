@@ -5,28 +5,20 @@ import createAppProviderContext, {
 } from '../createAppProviderContext';
 import StickyManager from '../../StickyManager';
 
-jest.mock('../../../../../utilities/intl', () => ({
-  default: jest.fn(),
-  __esModule: true,
-}));
-
 jest.mock('../../../../../utilities/unstyled-link', () => ({
-  default: jest.fn(),
+  Link: jest.fn(),
   __esModule: true,
 }));
 
 describe('createAppProviderContext()', () => {
   const createAppSpy: jest.SpyInstance<any> = jest.spyOn(appBridge, 'default');
-  const Intl: jest.Mock<{}> = require.requireMock(
-    '../../../../../utilities/intl',
-  ).default;
+
   const Link: jest.Mock<{}> = require.requireMock(
     '../../../../../utilities/unstyled-link',
-  ).default;
+  ).Link;
 
   afterEach(() => {
     createAppSpy.mockReset();
-    Intl.mockReset();
     Link.mockReset();
   });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import {mountWithContext} from 'test-utilities';
 
-import useTheme from '../use-theme';
+import {useTheme} from '../hooks';
 
 describe('useTheme', () => {
   it('returns context', () => {

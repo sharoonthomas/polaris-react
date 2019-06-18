@@ -1,7 +1,7 @@
 import React from 'react';
 import {unstyled} from '../shared';
 import usePolaris from '../../utilities/use-polaris';
-import {Props as UnstyledLinkProps} from '../../utilities/unstyled-link';
+import {UnstyledLinkProps} from '../../utilities/unstyled-link';
 
 interface Props extends UnstyledLinkProps {}
 

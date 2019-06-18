@@ -12,10 +12,11 @@ import {
   ThemeProviderContextType,
   ThemeProviderContext,
 } from '../utilities/theme-provider';
-import ScrollLockManager, {
+import {
+  ScrollLockManager,
   ScrollLockManagerContext,
 } from '../utilities/scroll-lock-manager';
-import Intl, {IntlContext, TranslationDictionary} from '../utilities/intl';
+import {Intl, IntlContext, TranslationDictionary} from '../utilities/intl';
 import translations from '../../locales/en.json';
 import {PolarisContext} from '../components/types';
 import {DeepPartial, Omit} from '../types';

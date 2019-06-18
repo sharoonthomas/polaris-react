@@ -1,7 +1,8 @@
 import React from 'react';
 import ThemeProvider from '../ThemeProvider';
-import Intl, {IntlContext} from '../../utilities/intl';
-import ScrollLockManager, {
+import {Intl, IntlContext} from '../../utilities/intl';
+import {
+  ScrollLockManager,
   ScrollLockManagerContext,
 } from '../../utilities/scroll-lock-manager';
 import {StickyManager, createAppProviderContext} from './utilities';

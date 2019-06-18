@@ -1,2 +1,2 @@
-export {Props, LinkLikeComponent} from './types';
-export {default} from './link';
+export {UnstyledLinkProps, LinkLikeComponent} from './types';
+export {Link} from './link';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {mountWithAppProvider} from 'test-utilities/legacy';
-import Link from 'utilities/unstyled-link';
+import {Link} from 'utilities/unstyled-link';
 import UnstyledLink from 'components/UnstyledLink';
 
 describe('<UnstyledLink />', () => {

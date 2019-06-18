@@ -1,10 +1,8 @@
 import {useContext} from 'react';
-import ScrollLockManagerContext from './context';
+import {ScrollLockManagerContext} from './context';
 
-function useScrollLockManager() {
+export function useScrollLockManager() {
   const scrollLockManager = useContext(ScrollLockManagerContext);
 
   return scrollLockManager;
 }
-
-export default useScrollLockManager;

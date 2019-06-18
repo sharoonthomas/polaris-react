@@ -1,6 +1,6 @@
 import {LinkLikeComponent} from './types';
 
-export default class Link {
+export class Link {
   constructor(private linkComponent?: LinkLikeComponent) {}
 
   setLinkComponent(link: LinkLikeComponent) {

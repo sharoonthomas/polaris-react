@@ -8,7 +8,7 @@ import {
 
 const REPLACE_REGEX = /{([^}]*)}/g;
 
-export default class Intl {
+export class Intl {
   constructor(
     private translation:
       | TranslationDictionary
