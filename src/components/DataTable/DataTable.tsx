@@ -7,7 +7,11 @@ import {headerCell} from '../shared';
 import {withAppProvider, WithAppProviderProps} from '../AppProvider';
 import EventListener from '../EventListener';
 import {Cell, CellProps, Navigation} from './components';
-import {measureColumn, getPrevAndCurrentColumns} from './utilities';
+import {
+  isEdgeVisible,
+  getPrevAndCurrentColumns,
+  TableMeasurements,
+} from './utilities';
 
 import {DataTableState, SortDirection} from './types';
 import styles from './DataTable.scss';
@@ -372,6 +376,31 @@ class DataTable extends React.PureComponent<CombinedProps, DataTableState> {
     };
 
     return handleSort;
+  };
+}
+
+function measureColumn(tableData: TableMeasurements) {
+  return function(column: HTMLElement, index: number) {
+    const {
+      firstVisibleColumnIndex,
+      tableLeftVisibleEdge: tableStart,
+      tableRightVisibleEdge: tableEnd,
+    } = tableData;
+
+    const leftEdge = column.offsetLeft;
+    const rightEdge = leftEdge + column.offsetWidth;
+    const isVisibleLeft = isEdgeVisible(leftEdge, tableStart, tableEnd);
+    const isVisibleRight = isEdgeVisible(rightEdge, tableStart, tableEnd);
+    const isVisible = isVisibleLeft || isVisibleRight;
+
+    if (isVisible) {
+      tableData.firstVisibleColumnIndex = Math.min(
+        firstVisibleColumnIndex,
+        index,
+      );
+    }
+
+    return {leftEdge, rightEdge, isVisible};
   };
 }
 
