@@ -379,6 +379,41 @@ describe('<TextField />', () => {
 
       expect(characterCount.text()).toBe('4/10');
     });
+
+    it('announces updated character count only when input field is in focus', () => {
+      const quietTextField = mountWithAppProvider(
+        <TextField
+          value="test"
+          showCharacterCount
+          label="TextField"
+          id="MyField"
+          onChange={noop}
+        />,
+      );
+
+      expect(
+        quietTextField
+          .find('#MyFieldCharacterCounter')
+          .prop<string>('aria-live')
+        ).toBe('off');
+
+      const politeTextField = mountWithAppProvider(
+        <TextField
+          value="test"
+          showCharacterCount
+          label="TextField"
+          id="MyField"
+          onChange={noop}
+          focused
+        />,
+      );
+
+      expect(
+        politeTextField
+          .find('#MyFieldCharacterCounter')
+          .prop<string>('aria-live')
+        ).toBe('polite');
+    });
   });
 
   describe('type', () => {

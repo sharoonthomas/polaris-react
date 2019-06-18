@@ -209,7 +209,7 @@ class TextField extends React.PureComponent<CombinedProps, State> {
 
     const normalizedValue = value != null ? value : '';
 
-    const {height} = this.state;
+    const {height, focus} = this.state;
 
     const className = classNames(
       styles.TextField,
@@ -257,7 +257,7 @@ class TextField extends React.PureComponent<CombinedProps, State> {
         id={`${id}CharacterCounter`}
         className={characterCountClassName}
         aria-label={characterCountLabel}
-        aria-live="polite"
+        aria-live={focus ? 'polite' : 'off'}
         aria-atomic="true"
       >
         {characterCountText}
